@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    .card
+      .card-block
+        - if stack_item = Timecop.top_stack_item
+          p.card-text #{I18n.l(stack_item.time, format: :long)} <span class="tag tag-danger">#{stack_item.mock_type}</span>
+        - else
+          p.card-text #{I18n.l(Time.current, format: :long)} <span class="tag tag-info">present</span>
+        = form_for(OpenStruct.new, as: :travel, url: travel_path, html: { class: "form-inline" }) do |f|
+          .form-group
+            = f.datetime_select :m, { start_year: 1940 }, class: "form-control"
+          .btn-group.m-l-1 role="group"
+            = f.submit :travel, class: "btn btn-outline-primary"
+            = f.submit :freeze, class: "btn btn-outline-primary"
+            = f.submit :return, class: "btn btn-outline-primary"
+

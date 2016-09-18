@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title timecop web
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
+    sass:
+      #main
+        margin-top: 5.5rem
+      footer
+        padding: 1.5rem 0
+        font-size: 80%
+        color: #888
+  body
+    = render partial: "shared/timecop_web/header"
+
+    .container-fluid#main
+      - if notice
+        .alert.alert-success role="alert"
+          small = notice
+      - if alert
+        .alert.alert-warning role="alert"
+          small = alert
+      = yield
+
+    = render partial: "shared/timecop_web/footer"
